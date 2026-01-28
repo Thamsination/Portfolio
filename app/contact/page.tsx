@@ -3,13 +3,19 @@
 import { motion } from 'framer-motion';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
+import Link from 'next/link';
 
 interface ContactFormData {
   name: string;
   email: string;
   subject: string;
   message: string;
+  privacyConsent: boolean;
 }
+
+// FormSpree endpoint - Replace with your own FormSpree form ID
+// Sign up at https://formspree.io and create a form to get your endpoint
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mzdgzboo';
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -26,13 +32,27 @@ export default function ContactPage() {
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
-    // Simulate form submission - replace with actual implementation
-    // You can integrate with FormSpree, Netlify Forms, or your own API
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      console.log('Form data:', data);
-      setSubmitStatus('success');
-      reset();
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          subject: data.subject,
+          message: data.message
+        })
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        reset();
+      } else {
+        setSubmitStatus('error');
+      }
     } catch (error) {
       setSubmitStatus('error');
     } finally {
@@ -144,6 +164,27 @@ export default function ContactPage() {
                 />
                 {errors.message && (
                   <p className="mt-1 text-sm text-red-600">{errors.message.message}</p>
+                )}
+              </div>
+
+              {/* Privacy Consent */}
+              <div>
+                <label className="flex items-start gap-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    {...register('privacyConsent', { required: 'You must agree to the privacy policy' })}
+                    className="mt-1 h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-900"
+                  />
+                  <span className="text-sm text-gray-600">
+                    I agree to the{' '}
+                    <Link href="/privacy" className="text-gray-900 underline hover:text-gray-700">
+                      Privacy Policy
+                    </Link>{' '}
+                    and consent to the processing of my personal data to respond to my inquiry. *
+                  </span>
+                </label>
+                {errors.privacyConsent && (
+                  <p className="mt-1 text-sm text-red-600">{errors.privacyConsent.message}</p>
                 )}
               </div>
 
