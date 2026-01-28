@@ -43,8 +43,8 @@ export default function Home() {
           className="object-cover"
           priority
         />
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-black/60" />
+        {/* Colored Overlay (Deep Indigo Example, 70% opacity) */}
+        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(1, 10, 73, 0.8)' }} />
         
         {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -54,12 +54,16 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white" style={{ marginBottom: '1.5rem' }}>
-              Making things people love
+              Making things people <span style={{ color: 'rgba(249, 101, 219, 0.8)' }}>love</span>
             </h1>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto" style={{ marginBottom: '4rem' }}>
               <span className="sm:hidden">Copenhagen-based industrial designer</span>
               <span className="hidden sm:inline">
-                Hello! I'm Christian, an industrial designer based in Copenhagen with 10 years of experience turning ideas into real products. I take a customer-focused approach—using sketching, CAD, prototyping, and a bit of code—to make things people love. Take a look at some of my projects, and if you have any questions, feel free to send me an email. Always happy to chat!
+                <>
+                  Hello! I'm Christian, an industrial designer based in Copenhagen with 10 years of experience turning ideas into real products. I take a customer-focused approach—using sketching, CAD, prototyping, and a bit of code—to make things people love.
+                  <br /><br />
+                  Take a look at some of my projects, and if you have any questions, feel free to send me an email. Always happy to chat!
+                </>
               </span>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
