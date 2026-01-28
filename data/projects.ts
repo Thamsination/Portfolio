@@ -91,7 +91,7 @@ export const projects: Project[] = [
       outcome: 'Launched in 2018, Beocreate empowered hobbyists worldwide to explore creative audio projects using the platform. The product remains available, with its legacy living on through official Bang & Olufsen Recreated products and the Reloved product lines.',
       outcomeTitle: 'Successful launch and the legacy continues',
       outcomeImages: [
-        { video: 'https://christianthams.com/videos/beocreate-video.mp4', caption: 'Product demo', fullWidth: true, fit: 'contain', bgColor: '#000000' },
+        { video: '/projects/beocreate/beocreate-video.mp4', caption: 'Product demo', fullWidth: true, fit: 'contain', bgColor: '#000000' },
         { src: '/projects/beocreate/image3.jpg', caption: 'A collection of upcycled loudspeakers showcased at TechBBQ' },
       ],
     },
@@ -189,7 +189,7 @@ export const projects: Project[] = [
       outcome: 'Delivered 3D models and photorealistic renderings for the Okapi watch face, supporting the brand\'s debut collection launch. The design successfully captured the essence of 1970s watchmaking reinterpreted for modern wrists.',
       outcomeTitle: 'Enabling Pedral\'s debut collection',
       outcomeImages: [
-        { video: 'https://christianthams.com/videos/Pedral-VideoLoop.mp4', caption: 'Product demo', fullWidth: true, fit: 'contain'},
+        { video: '/projects/pedral-watches/Pedral-VideoLoop.mp4', caption: 'Product demo', fullWidth: true, fit: 'contain'},
         { src: '/projects/pedral-watches/image2.jpg' },
         { src: '/projects/pedral-watches/image5.jpg' },
         { src: '/projects/pedral-watches/image6.jpg' },
