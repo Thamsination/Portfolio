@@ -159,5 +159,5 @@ import { YourFont } from "next/font/google";
 ## Contact
 
 For questions or collaboration opportunities:
-- Email: contact@christianthams.com
+- Email: hello@christianthams.com
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/christian-thams-15a302a4/)
