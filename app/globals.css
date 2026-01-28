@@ -1,11 +1,5 @@
 @import "tailwindcss";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -13,9 +7,31 @@ html {
 body {
   background: #ffffff;
   color: #171717;
-  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-libre-baskerville), Georgia, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings and buttons use League Spartan */
+h1, h2, h3, h4, h5, h6,
+button,
+.font-heading,
+.btn {
+  font-family: var(--font-league-spartan), system-ui, sans-serif;
+}
+
+/* Custom spacing utilities for generous whitespace */
+.section-spacing {
+  padding-top: 12rem;
+  padding-bottom: 12rem;
+}
+
+.heading-spacing {
+  margin-bottom: 3rem;
+}
+
+.grid-spacing {
+  gap: 4rem;
 }
 
 /* Custom scrollbar */

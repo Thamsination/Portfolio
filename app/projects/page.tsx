@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import ProjectCard from '@/components/ProjectCard';
-import { projects } from '@/data/projects';
+import { getSortedProjects } from '@/data/projects';
 import { useState } from 'react';
 
 const fadeInUp = {
@@ -13,27 +13,32 @@ const fadeInUp = {
 
 export default function ProjectsPage() {
   const [filter, setFilter] = useState('All');
-  const categories = ['All', ...Array.from(new Set(projects.map(p => p.category)))];
+  const sortedProjects = getSortedProjects();
+  // Flatten all categories and get unique values
+  const categories = ['All', ...Array.from(new Set(sortedProjects.flatMap(p => p.categories)))];
   
+  // Filter projects that include the selected category
   const filteredProjects = filter === 'All' 
-    ? projects 
-    : projects.filter(p => p.category === filter);
+    ? sortedProjects 
+    : sortedProjects.filter(p => p.categories.includes(filter));
 
   return (
-    <div className="bg-white min-h-screen py-24">
+    <div className="bg-white min-h-screen" style={{ paddingTop: '8rem', paddingBottom: '8rem' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center"
+          style={{ marginBottom: '5rem' }}
         >
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900" style={{ marginBottom: '2rem' }}>
             Projects
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Explore a collection of industrial design and product development projects
+            A collection of highlighted projects from my career. 
+            Showcasing my journey as a product developer, ranging from new to old. 
           </p>
         </motion.div>
 
@@ -42,7 +47,8 @@ export default function ProjectsPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="flex flex-wrap justify-center gap-3 mb-12"
+          className="flex flex-wrap justify-center"
+          style={{ gap: '1.5rem', marginBottom: '5rem' }}
         >
           {categories.map((category) => (
             <button
@@ -62,7 +68,8 @@ export default function ProjectsPage() {
         {/* Projects Grid */}
         <motion.div
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          style={{ gap: '4rem' }}
         >
           {filteredProjects.map((project, index) => (
             <motion.div

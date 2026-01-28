@@ -41,14 +41,15 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-white min-h-screen py-24">
+    <div className="bg-white min-h-screen" style={{ paddingTop: '8rem', paddingBottom: '8rem' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           {...fadeInUp}
-          className="text-center mb-16"
+          className="text-center"
+          style={{ marginBottom: '5rem' }}
         >
-          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl sm:text-5xl font-bold text-gray-900" style={{ marginBottom: '2rem' }}>
             Get In Touch
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
@@ -56,14 +57,14 @@ export default function ContactPage() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2" style={{ gap: '5rem' }}>
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
               {/* Name */}
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -186,34 +187,48 @@ export default function ContactPage() {
             className="space-y-8"
           >
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h2>
-              <div className="space-y-4">
+              <h2 className="text-2xl font-bold text-gray-900" style={{ marginBottom: '2.5rem' }}>Contact Information</h2>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                 {/* Email */}
-                <div className="flex items-start space-x-4">
+                <div className="flex items-start" style={{ gap: '1rem' }}>
                   <div className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
                     <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-medium text-gray-900 mb-1">Email</h3>
-                    <a href="mailto:contact@christianthams.com" className="text-gray-600 hover:text-gray-900">
-                      contact@christianthams.com
+                    <h3 className="font-medium text-gray-900" style={{ marginBottom: '0.25rem' }}>Email</h3>
+                    <a href="mailto:hello@christianthams.com" className="text-gray-600 hover:text-gray-900">
+                      hello@christianthams.com
                     </a>
                   </div>
                 </div>
 
+                {/* Location */}
+                <div className="flex items-start" style={{ gap: '1rem' }}>
+                  <div className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                    <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-gray-900" style={{ marginBottom: '0.25rem' }}>Location</h3>
+                    <p className="text-gray-600">Copenhagen, Denmark</p>
+                  </div>
+                </div>
+
                 {/* LinkedIn */}
-                <div className="flex items-start space-x-4">
+                <div className="flex items-start" style={{ gap: '1rem' }}>
                   <div className="flex-shrink-0 w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
                     <svg className="w-6 h-6 text-gray-600" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                     </svg>
                   </div>
                   <div>
-                    <h3 className="font-medium text-gray-900 mb-1">LinkedIn</h3>
-                    <a href="https://linkedin.com/in/christianthams" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900">
-                      linkedin.com/in/christianthams
+                    <h3 className="font-medium text-gray-900" style={{ marginBottom: '0.25rem' }}>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/christian-thams-15a302a4/" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-900">
+                      LinkedIn Profile
                     </a>
                   </div>
                 </div>
@@ -221,19 +236,11 @@ export default function ContactPage() {
             </div>
 
             {/* Additional Info */}
-            <div className="bg-gray-50 rounded-lg p-6">
-              <h3 className="font-semibold text-gray-900 mb-3">Office Hours</h3>
-              <p className="text-gray-600 text-sm mb-4">
-                I typically respond to emails within 24-48 hours during business days.
-              </p>
+            <div className="bg-gray-50 rounded-lg" style={{ padding: '1.5rem', marginTop: '2rem' }}>
+              <h3 className="font-semibold text-gray-900" style={{ marginBottom: '0.75rem' }}>Languages</h3>
               <p className="text-gray-600 text-sm">
-                For urgent inquiries, please mention &quot;URGENT&quot; in the subject line.
+                English, Swedish, and Danish
               </p>
-            </div>
-
-            {/* Map or Image Placeholder */}
-            <div className="bg-gray-200 rounded-lg h-64 flex items-center justify-center">
-              <p className="text-gray-500">Location Map Placeholder</p>
             </div>
           </motion.div>
         </div>

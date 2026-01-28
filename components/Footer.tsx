@@ -1,55 +1,26 @@
-import Link from 'next/link';
-
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="flex flex-col md:flex-row md:justify-between gap-8">
           {/* About Section */}
           <div>
             <h3 className="text-white text-lg font-semibold mb-4">Christian Thams</h3>
             <p className="text-sm text-gray-400">
               Industrial Designer & Product Developer
               <br />
-              Creating innovative and sustainable design solutions
+              Copenhagen, Denmark
             </p>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-white text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link href="/" className="hover:text-white transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/projects" className="hover:text-white transition-colors">
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="hover:text-white transition-colors">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-white transition-colors">
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
           {/* Connect Section */}
-          <div>
+          <div className="md:text-right">
             <h3 className="text-white text-lg font-semibold mb-4">Connect</h3>
-            <div className="flex space-x-4">
+            <div className="flex md:justify-end space-x-4">
               <a
-                href="https://linkedin.com/in/christianthams"
+                href="https://www.linkedin.com/in/christian-thams-15a302a4/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white transition-colors"
@@ -60,7 +31,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="mailto:contact@christianthams.com"
+                href="mailto:hello@christianthams.com"
                 className="hover:text-white transition-colors"
                 aria-label="Email"
               >

@@ -160,4 +160,4 @@ import { YourFont } from "next/font/google";
 
 For questions or collaboration opportunities:
 - Email: contact@christianthams.com
-- LinkedIn: [linkedin.com/in/christianthams](https://linkedin.com/in/christianthams)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/christian-thams-15a302a4/)

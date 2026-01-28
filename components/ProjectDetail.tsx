@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,8 +13,127 @@ interface ProjectDetailProps {
   prevProject: Project;
 }
 
+// Helper function to parse markdown-style links [text](url) and render as clickable links
+function renderTextWithLinks(text: string) {
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const parts: (string | JSX.Element)[] = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = linkRegex.exec(text)) !== null) {
+    // Add text before the link
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+    // Add the link
+    parts.push(
+      <a
+        key={match.index}
+        href={match[2]}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-600 hover:text-blue-800 underline"
+      >
+        {match[1]}
+      </a>
+    );
+    lastIndex = match.index + match[0].length;
+  }
+
+  // Add remaining text
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+
+  return parts.length > 0 ? parts : text;
+}
+
+// Map company names to logo file paths and website URLs
+const companyLogos: Record<string, { logo: string; url: string }> = {
+  'SOUNDBOKS': { logo: '/logos/soundboks.svg', url: 'https://www.soundboks.com/' },
+  'Bang & Olufsen': { logo: '/logos/bang-olufsen.svg', url: 'https://www.bang-olufsen.com/' },
+  'IDEO London': { logo: '/logos/ideo.svg', url: 'https://www.ideo.com/' },
+  'UVISA Health': { logo: '/logos/uvisa.svg', url: 'https://www.uvisahealth.com/' },
+  'Danish Design Center': { logo: '/logos/ddc.png', url: 'https://ddc.dk/' },
+  'Pedral': { logo: '/logos/pedral.svg', url: 'https://www.pedral.eu/' },
+};
+
 export default function ProjectDetail({ project, nextProject, prevProject }: ProjectDetailProps) {
   const router = useRouter();
+  const [visibleCaption, setVisibleCaption] = useState<string | null>(null);
+  
+  // Get logo info for the project's company
+  const companyInfo = project.details.company ? companyLogos[project.details.company] : null;
+
+  const handleImageClick = (key: string) => {
+    // Toggle caption visibility on tap (for mobile)
+    setVisibleCaption(visibleCaption === key ? null : key);
+  };
+
+  // Reusable image gallery renderer
+  const renderImageGallery = (images: typeof project.details.overviewImages, sectionKey: string) => {
+    if (!images || images.length === 0) return null;
+    
+    // Always use 2-column grid to support fullWidth spanning
+    const gridClass = "grid grid-cols-1 md:grid-cols-2";
+    
+    return (
+      <div className={gridClass} style={{ gap: '2rem', marginTop: '2rem' }}>
+        {images.map((image, index) => {
+          const imageKey = `${sectionKey}-${index}`;
+          // Full width images span both columns, or if there's only 1 image
+          const spanClass = image.fullWidth || images.length === 1 ? "md:col-span-2" : "";
+          return (
+            <div 
+              key={index} 
+              className={`group relative aspect-[4/3] rounded-lg overflow-hidden cursor-pointer ${spanClass}`}
+              style={{ backgroundColor: image.bgColor || '#e5e7eb' }}
+              onClick={() => handleImageClick(imageKey)}
+            >
+              {image.video ? (
+                /* Video element */
+                <video
+                  src={image.video}
+                  controls
+                  className="w-full h-full object-cover"
+                  style={{ 
+                    objectFit: typeof image.fit === 'number' || image.fit === 'contain' ? 'contain' : 'cover',
+                    objectPosition: image.position || 'center',
+                  }}
+                />
+              ) : image.src ? (
+                /* Image element */
+                <Image
+                  src={image.src}
+                  alt={image.caption || `${project.title} - Image ${index + 1}`}
+                  fill
+                  className="group-hover:scale-105 transition-transform duration-300"
+                  style={{ 
+                    objectFit: typeof image.fit === 'number' || image.fit === 'contain' ? 'contain' : 'cover',
+                    objectPosition: image.position || 'center',
+                    transform: typeof image.fit === 'number' ? `scale(${image.fit})` : undefined,
+                  }}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              ) : null}
+              {/* Caption overlay - shows on hover (desktop) or tap (mobile) */}
+              {image.caption && !image.video && (
+                <div 
+                  className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent text-white p-4 pt-24 transition-opacity duration-300 ${
+                    visibleCaption === imageKey 
+                      ? 'opacity-100' 
+                      : 'opacity-0 group-hover:opacity-100'
+                  }`}
+                >
+                  <p className="text-sm">{image.caption}</p>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
 
   return (
     <div className="bg-white min-h-screen">
@@ -34,9 +154,13 @@ export default function ProjectDetail({ project, nextProject, prevProject }: Pro
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <span className="inline-block px-3 py-1 text-sm font-medium bg-white/20 backdrop-blur-sm rounded-full mb-4">
-                {project.category}
-              </span>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {project.categories.map((category, index) => (
+                  <span key={index} className="inline-block px-3 py-1 text-sm font-medium bg-white/20 backdrop-blur-sm rounded-full">
+                    {category}
+                  </span>
+                ))}
+              </div>
               <h1 className="text-4xl sm:text-5xl font-bold mb-4">{project.title}</h1>
               <p className="text-xl text-gray-200 max-w-3xl">{project.description}</p>
             </motion.div>
@@ -45,18 +169,19 @@ export default function ProjectDetail({ project, nextProject, prevProject }: Pro
       </div>
 
       {/* Project Details */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style={{ paddingTop: '6rem', paddingBottom: '6rem' }}>
+        <div className="grid grid-cols-1 lg:grid-cols-3" style={{ gap: '5rem' }}>
           {/* Main Content */}
-          <div className="lg:col-span-2 space-y-12">
+          <div className="lg:col-span-2" style={{ display: 'flex', flexDirection: 'column', gap: '5rem' }}>
             {/* Overview */}
             <motion.section
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Overview</h2>
-              <p className="text-gray-600 leading-relaxed">{project.details.overview}</p>
+              <h2 className="text-2xl font-bold text-gray-900" style={{ marginBottom: '1.5rem' }}>{project.details.overviewTitle || 'Overview'}</h2>
+              <p className="text-gray-600 leading-relaxed text-lg">{renderTextWithLinks(project.details.overview)}</p>
+              {renderImageGallery(project.details.overviewImages, 'overview')}
             </motion.section>
 
             {/* Challenges */}
@@ -66,8 +191,9 @@ export default function ProjectDetail({ project, nextProject, prevProject }: Pro
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Challenges</h2>
-                <p className="text-gray-600 leading-relaxed">{project.details.challenges}</p>
+                <h2 className="text-2xl font-bold text-gray-900" style={{ marginBottom: '1.5rem' }}>{project.details.challengesTitle || 'Challenges'}</h2>
+                <p className="text-gray-600 leading-relaxed text-lg">{renderTextWithLinks(project.details.challenges)}</p>
+                {renderImageGallery(project.details.challengesImages, 'challenges')}
               </motion.section>
             )}
 
@@ -78,32 +204,11 @@ export default function ProjectDetail({ project, nextProject, prevProject }: Pro
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Outcome</h2>
-                <p className="text-gray-600 leading-relaxed">{project.details.outcome}</p>
+                <h2 className="text-2xl font-bold text-gray-900" style={{ marginBottom: '1.5rem' }}>{project.details.outcomeTitle || 'Outcome'}</h2>
+                <p className="text-gray-600 leading-relaxed text-lg">{renderTextWithLinks(project.details.outcome)}</p>
+                {renderImageGallery(project.details.outcomeImages, 'outcome')}
               </motion.section>
             )}
-
-            {/* Image Gallery */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-            >
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Gallery</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {project.images.map((image, index) => (
-                  <div key={index} className="relative aspect-[4/3] bg-gray-200 rounded-lg overflow-hidden">
-                    <Image
-                      src={image}
-                      alt={`${project.title} - Image ${index + 1}`}
-                      fill
-                      className="object-cover hover:scale-105 transition-transform duration-300"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  </div>
-                ))}
-              </div>
-            </motion.section>
           </div>
 
           {/* Sidebar */}
@@ -115,7 +220,26 @@ export default function ProjectDetail({ project, nextProject, prevProject }: Pro
               className="sticky top-24 space-y-8"
             >
               {/* Project Info */}
-              <div className="bg-gray-50 rounded-lg p-6 space-y-6">
+              <div className="bg-gray-50 rounded-lg" style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+                {/* Company Logo */}
+                {companyInfo && (
+                  <div>
+                    <a
+                      href={companyInfo.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block hover:opacity-70 transition-opacity"
+                    >
+                      <Image
+                        src={companyInfo.logo}
+                        alt={project.details.company || 'Company'}
+                        width={120}
+                        height={40}
+                        style={{ height: '28px', width: 'auto', filter: 'grayscale(100%)' }}
+                      />
+                    </a>
+                  </div>
+                )}
                 <div>
                   <h3 className="text-sm font-semibold text-gray-500 uppercase mb-2">Role</h3>
                   <p className="text-gray-900">{project.details.role}</p>
@@ -142,7 +266,7 @@ export default function ProjectDetail({ project, nextProject, prevProject }: Pro
               {/* Back Button */}
               <button
                 onClick={() => router.back()}
-                className="w-full px-6 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors"
+                className="btn w-full px-6 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors"
               >
                 ← Back to Projects
               </button>

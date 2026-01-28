@@ -27,16 +27,20 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
-            <span className="inline-block px-3 py-1 text-xs font-medium bg-white/20 backdrop-blur-sm rounded-full mb-2">
-              {project.category}
-            </span>
+            <div className="flex flex-wrap gap-2 mb-2">
+              {project.categories.map((category, index) => (
+                <span key={index} className="inline-block px-3 py-1 text-xs font-medium bg-white/20 backdrop-blur-sm rounded-full">
+                  {category}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
-        <div className="mt-4">
+        <div style={{ marginTop: '2rem' }}>
           <h3 className="text-xl font-semibold text-gray-900 group-hover:text-gray-600 transition-colors">
             {project.title}
           </h3>
-          <p className="mt-2 text-gray-600 line-clamp-2">{project.description}</p>
+          <p className="text-gray-600 line-clamp-2" style={{ marginTop: '1rem' }}>{project.description}</p>
         </div>
       </motion.div>
     </Link>
