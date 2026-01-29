@@ -6,6 +6,7 @@ export interface ProjectImage {
   fit?: 'cover' | 'contain' | number; // 'cover' (default), 'contain', or number: 1 = full image, >1 zooms in
   bgColor?: string; // Background color when image doesn't fill container, e.g., '#ffffff', '#2d2d2d'
   fullWidth?: boolean; // If true, image spans entire row width regardless of other images
+  thirdWidth?: boolean; // If true, image takes 1/3 of row (3 images per row)
 }
 
 export interface Project {
@@ -55,7 +56,8 @@ export const projects: Project[] = [
       challenges: 'Developing the complete user experience including button feel, LED feedback animations, product print, App V1.0 workshops with customers, out-of-box experience design, and all print materials. Created DFMA, mechanical, and QC documentation for the entire product.',
       challengesTitle: 'Designing the complete user experience',
       challengesImages: [
-        { src: '/projects/soundboks-3/image3.jpg', fit: 'contain', bgColor: '#2d2d2d' },
+        { src: '/projects/soundboks-3/image3.jpg', fit: 'contain', bgColor: '#2d2d2d', thirdWidth: true },
+        { src: '/projects/soundboks-3/image4.jpg', thirdWidth: true, position: 'center 75%' },
       ],
       outcome: 'Successfully launched the SOUNDBOKS 3 with industrial design of grill, branding, interface UX, reflex port design, and packaging that also functions as shipping box to reduce waste.',
       outcomeTitle: 'Launching with distinctive industrial design',
@@ -111,7 +113,7 @@ export const projects: Project[] = [
       overview: 'Pippi is a personal development project targeting design-conscious customers who want decorative electronics. The goal was to design Pippi with local manufacturing and circular materials in mind.',
       overviewTitle: 'Electronics for design-conscious parents',
       overviewImages: [
-        { src: '/projects/pippi-baby-monitor/image1.jpg' },
+        { src: '/projects/pippi-baby-monitor/image1.png', bgColor: '#FFFFFF', fit: 0.75, caption: 'Exploration process of form' },
       ],
       challenges: 'The goal was to create a design that invoked emotional ties with the customer while maintainging manufacturability. Colors differentiate between baby- and parent unit while saving costs using the same mechanical tooling. Uses ethical materials: durable medically graded silicone from Norway for the top and reclaimed ocean plastic for the bottom.',
       challengesTitle: 'Local manufacturing with ethical materials',
@@ -178,13 +180,16 @@ export const projects: Project[] = [
       overview: 'Collaborated with Pedral\'s founder to design the watch face for the Okapi, a 36mm cushion-shaped timepiece fusing 1970s charm with modern precision. The project focused on creating dial designs that honored vintage aesthetics while maintaining contemporary clarity.',
       overviewTitle: 'Designing the Okapi watch face',
       overviewImages: [
-        { src: '/projects/pedral-watches/image1.jpg' },
+        { src: '/projects/pedral-watches/image1.png', fit: 0.5, bgColor: '#FFFFFF', caption: 'The Okapi blank canvas', thirdWidth: true },
+        { src: '/projects/pedral-watches/image3.jpg', thirdWidth: true },
+        { src: '/projects/pedral-watches/image4.jpg', thirdWidth: true },
       ],
       challenges: 'Developed CMF explorations for multiple dial variants with a carefully curated color palette. The palette balanced vibrancy with subtlety to create distinct options that complemented the cushion case while ensuring legibility.',
       challengesTitle: 'Creating distinctive dial variants',
       challengesImages: [
-        { src: '/projects/pedral-watches/image3.jpg' },
-        { src: '/projects/pedral-watches/image4.jpg' },
+        { src: '/projects/pedral-watches/image6.jpg', fit: 1.15, bgColor: '#FFFFFF', thirdWidth: true },
+        { src: '/projects/pedral-watches/image7.jpg', fit: 'contain', bgColor: '#FFFFFF', thirdWidth: true },
+        { src: '/projects/pedral-watches/image8.jpg', fit: 'contain', bgColor: '#FFFFFF', thirdWidth: true },
       ],
       outcome: 'Delivered 3D models and photorealistic renderings for the Okapi watch face, supporting the brand\'s debut collection launch. The design successfully captured the essence of 1970s watchmaking reinterpreted for modern wrists.',
       outcomeTitle: 'Enabling Pedral\'s debut collection',
@@ -192,7 +197,6 @@ export const projects: Project[] = [
         { video: '/projects/pedral-watches/Pedral-VideoLoop.mp4', caption: 'Product demo', fullWidth: true, fit: 'contain'},
         { src: '/projects/pedral-watches/image2.jpg' },
         { src: '/projects/pedral-watches/image5.jpg' },
-        { src: '/projects/pedral-watches/image6.jpg' },
       ],
     },
   },
@@ -205,16 +209,16 @@ export const projects: Project[] = [
     featured: false,
     year: 2014,
     details: {
-      role: 'Designer',
+      role: 'Designer together with Martina Zbinden',
       timeline: '2014',
       tools: ['Rhinoceros 3D', 'Grasshopper', 'Arduino'],
-      overview: 'A personal design exploration combining digital aesthetics with physical form.',
-      overviewTitle: 'Bridging digital aesthetics and physical form',
+      overview: 'A reimagining of what a grandfather clock could be in the 21st century. Exploring expressions of a digital form and minimalstic geometry to create a unique luminaire.',
+      overviewTitle: 'Inspired by classic design to create modern expressions',
       overviewImages: [
         { src: '/projects/wall-lamp/image1.jpg', position: 'center 28%' },
       ],
-      outcome: 'The design expression combines digital facets with strict geometry inspired by digital trends meeting physical interactions.',
-      outcomeTitle: 'Digital facets meet strict geometry',
+      outcome: 'Using digital fabrication we can guide the light where we want reflections, combined with machined aluminium to mount and cool the LEDs. This allowed us to create a unique luminaire that is both functional and aesthetic.',
+      outcomeTitle: 'Utilising materials and exploring manufacturing technologies',
       outcomeImages: [
         { src: '/projects/wall-lamp/image2.jpg', position: 'center' },
       ],

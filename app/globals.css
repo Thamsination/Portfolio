@@ -8,6 +8,7 @@ body {
   background: #ffffff;
   color: #171717;
   font-family: var(--font-libre-baskerville), Georgia, serif;
+  font-size: 0.9rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

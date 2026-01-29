@@ -76,7 +76,10 @@ export default function PrivacyPage() {
               <li>Message content</li>
             </ul>
             <p className="text-gray-600 leading-relaxed" style={{ marginTop: '1rem' }}>
-              This website does not use cookies for tracking purposes, and I do not use analytics services that collect personal data.
+              This website uses GoatCounter for anonymous visitor statistics. GoatCounter does not use cookies, does not collect personal data, and is fully GDPR compliant. You can view the public statistics at{' '}
+              <a href="https://thamsination.goatcounter.com" target="_blank" rel="noopener noreferrer" className="text-gray-900 hover:underline">
+                thamsination.goatcounter.com
+              </a>.
             </p>
           </section>
 

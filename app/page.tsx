@@ -53,10 +53,10 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white" style={{ marginBottom: '1.5rem' }}>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white" style={{ marginBottom: '1.5rem' }}>
               Making things people <span style={{ color: 'rgba(249, 101, 219, 0.8)' }}>love</span>
             </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto" style={{ marginBottom: '4rem' }}>
+            <p className="text-base text-gray-300 max-w-2xl mx-auto" style={{ marginBottom: '4rem' }}>
               <span className="sm:hidden">Copenhagen-based industrial designer</span>
               <span className="hidden sm:inline">
                 <>
@@ -220,10 +220,10 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl sm:text-4xl font-bold" style={{ marginBottom: '2.5rem' }}>
+            <h2 className="text-2xl sm:text-3xl font-bold" style={{ marginBottom: '2.5rem' }}>
               Want to make something people love?
             </h2>
-            <p className="text-xl text-gray-300" style={{ marginBottom: '3rem' }}>
+            <p className="text-base text-gray-300" style={{ marginBottom: '3rem' }}>
               I&apos;d love to hear about it and discuss how we can bring your ideas to life.
             </p>
             <Link

@@ -74,15 +74,20 @@ export default function ProjectDetail({ project, nextProject, prevProject }: Pro
   const renderImageGallery = (images: typeof project.details.overviewImages, sectionKey: string) => {
     if (!images || images.length === 0) return null;
     
-    // Always use 2-column grid to support fullWidth spanning
-    const gridClass = "grid grid-cols-1 md:grid-cols-2";
+    // Use 6-column grid to support both 2-column (default) and 3-column layouts
+    const gridClass = "grid grid-cols-1 md:grid-cols-6";
     
     return (
-      <div className={gridClass} style={{ gap: '2rem', marginTop: '2rem' }}>
+      <div className={gridClass} style={{ gap: '1rem', marginTop: '5rem' }}>
         {images.map((image, index) => {
           const imageKey = `${sectionKey}-${index}`;
-          // Full width images span both columns, or if there's only 1 image
-          const spanClass = image.fullWidth || images.length === 1 ? "md:col-span-2" : "";
+          // Determine column span: fullWidth = 6 (full row), thirdWidth = 2 (3 per row), default = 3 (2 per row)
+          let spanClass = "md:col-span-3"; // Default: 2 images per row
+          if (image.fullWidth || images.length === 1) {
+            spanClass = "md:col-span-6"; // Full width: 1 image per row
+          } else if (image.thirdWidth) {
+            spanClass = "md:col-span-2"; // Third width: 3 images per row
+          }
           return (
             <div 
               key={index} 
@@ -179,8 +184,8 @@ export default function ProjectDetail({ project, nextProject, prevProject }: Pro
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h2 className="text-2xl font-bold text-gray-900" style={{ marginBottom: '1.5rem' }}>{project.details.overviewTitle || 'Overview'}</h2>
-              <p className="text-gray-600 leading-relaxed text-lg">{renderTextWithLinks(project.details.overview)}</p>
+              <h2 className="text-2xl font-bold text-gray-900" style={{ marginBottom: '0.75rem' }}>{project.details.overviewTitle || 'Overview'}</h2>
+              <p className="text-gray-600 leading-relaxed text-base">{renderTextWithLinks(project.details.overview)}</p>
               {renderImageGallery(project.details.overviewImages, 'overview')}
             </motion.section>
 
@@ -191,8 +196,8 @@ export default function ProjectDetail({ project, nextProject, prevProject }: Pro
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
-                <h2 className="text-2xl font-bold text-gray-900" style={{ marginBottom: '1.5rem' }}>{project.details.challengesTitle || 'Challenges'}</h2>
-                <p className="text-gray-600 leading-relaxed text-lg">{renderTextWithLinks(project.details.challenges)}</p>
+                <h2 className="text-2xl font-bold text-gray-900" style={{ marginBottom: '0.75rem' }}>{project.details.challengesTitle || 'Challenges'}</h2>
+                <p className="text-gray-600 leading-relaxed text-base">{renderTextWithLinks(project.details.challenges)}</p>
                 {renderImageGallery(project.details.challengesImages, 'challenges')}
               </motion.section>
             )}
@@ -204,8 +209,8 @@ export default function ProjectDetail({ project, nextProject, prevProject }: Pro
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
-                <h2 className="text-2xl font-bold text-gray-900" style={{ marginBottom: '1.5rem' }}>{project.details.outcomeTitle || 'Outcome'}</h2>
-                <p className="text-gray-600 leading-relaxed text-lg">{renderTextWithLinks(project.details.outcome)}</p>
+                <h2 className="text-2xl font-bold text-gray-900" style={{ marginBottom: '0.75rem' }}>{project.details.outcomeTitle || 'Outcome'}</h2>
+                <p className="text-gray-600 leading-relaxed text-base">{renderTextWithLinks(project.details.outcome)}</p>
                 {renderImageGallery(project.details.outcomeImages, 'outcome')}
               </motion.section>
             )}
