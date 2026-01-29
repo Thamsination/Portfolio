@@ -123,7 +123,7 @@ export default function AboutPage() {
             </div>
             <div style={{ marginTop: '2rem', display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
               <a
-                href="/resume.pdf"
+                href="/Christian Thams - CV.pdf"
                 download
                 className="btn inline-flex items-center px-6 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition-colors"
               >
