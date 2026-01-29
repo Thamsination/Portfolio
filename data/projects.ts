@@ -60,7 +60,7 @@ export const projects: Project[] = [
         { src: '/projects/soundboks-3/image3.jpg', fit: 'contain', bgColor: '#2d2d2d', thirdWidth: true },
         { src: '/projects/soundboks-3/image4.jpg', thirdWidth: true, position: 'center 75%' },
       ],
-      outcome: 'Successfully launched the SOUNDBOKS 3, now used by over 100,000 customers worldwide. Key contributions included industrial design of the signature grill pattern, branding elements, interface UX with LED animations, reflex port design, and dual-purpose packaging. The product achieved a 4.4-star rating on Google Reviewswith customers praising its durability and user experience.',
+      outcome: 'Successfully launched the SOUNDBOKS 3, now used by over 100,000 customers worldwide. Key contributions included industrial design of the signature grill pattern, branding elements, interface UX with LED animations, reflex port design, and dual-purpose packaging. The product achieved a 4.4-star rating on Google Reviews with customers praising its durability and user experience.',
       outcomeTitle: 'Launching with distinctive industrial design',
       outcomeImages: [
         { src: '/projects/soundboks-3/image1.jpg', position: 'top', fit: 'contain', bgColor: '#FFFFFF' },
