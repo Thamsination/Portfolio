@@ -5,8 +5,9 @@ export interface ProjectImage {
   position?: string; // CSS object-position value, e.g., 'top', 'bottom', 'center' (default)
   fit?: 'cover' | 'contain' | number; // 'cover' (default), 'contain', or number: 1 = full image, >1 zooms in
   bgColor?: string; // Background color when image doesn't fill container, e.g., '#ffffff', '#2d2d2d'
-  fullWidth?: boolean; // If true, image spans entire row width regardless of other images
+  halfWidth?: boolean; // If true, image takes 1/2 of row (2 images per row)
   thirdWidth?: boolean; // If true, image takes 1/3 of row (3 images per row)
+  // Default is full width (1 image per row)
 }
 
 export interface Project {
@@ -51,7 +52,7 @@ export const projects: Project[] = [
       overview: 'Joined the SOUNDBOKS team to finalize "SOUNDBOKS 3" and bring it to market. Mechanical responsibilities included industrial design finalization, specifying product UX, mechanical design development, and overseeing supplier activities. These tasks were coordinated with the SOUNDBOKS marketing- and logistics team to ensure holistic development of the product, brand and quality control.',
       overviewTitle: 'Finalizing hardware and UX for market launch',
       overviewImages: [
-        { src: '/projects/soundboks-3/image2.jpg' },
+        { src: '/projects/soundboks-3/image2.jpg', halfWidth: true },
       ],
       challenges: 'Developing the complete user experience including button feel, LED feedback animations, product print, App V1.0 workshops with customers, out-of-box experience design, and all print materials. Created DFMA, mechanical, and QC documentation for the entire product.',
       challengesTitle: 'Designing the complete user experience',
@@ -62,8 +63,8 @@ export const projects: Project[] = [
       outcome: 'Successfully launched the SOUNDBOKS 3 with industrial design of grill, branding, interface UX, reflex port design, and packaging that also functions as shipping box to reduce waste.',
       outcomeTitle: 'Launching with distinctive industrial design',
       outcomeImages: [
-        { src: '/projects/soundboks-3/image1.jpg', position: 'top' },
-        { src: '/projects/soundboks-3/image4.svg', fit: 1.125, bgColor: '#FFFFFF' },
+        { src: '/projects/soundboks-3/image1.jpg', position: 'top', fit: 'contain', bgColor: '#FFFFFF' },
+        { src: '/projects/soundboks-3/image4.svg', fit: 'contain', bgColor: '#FFFFFF', halfWidth: true },
       ],
     },
   },
@@ -83,18 +84,20 @@ export const projects: Project[] = [
       overview: 'Bang & Olufsen was seeking to unlock new product categories through innovative approaches. As the creator of Beocreate, I championed open-source innovation tools and fostered close collaboration with the enthusiastic B&O and maker communities. Organizeing hackathons both within B&O and alongside external makers to drive early-phase ideation, identifying new opportunities for the company. This collaborative process laid the groundwork and blueprints for the tools needed to support this novel approach to innovation.',
       overviewTitle: 'Fostering innovation through collaborative ideation',
       overviewImages: [
-        { src: '/projects/beocreate/image1.jpg', caption: 'B&O workshop for Beocreate possibilities' },
+        { src: '/projects/beocreate/image1.jpg', caption: 'B&O workshop for Beocreate possibilities', halfWidth: true },
       ],
       challenges: 'The culmination of the project was the Beocreate 4-channel amplifier, a versatile, all-in-one platform suitable for a wide range of loudspeaker projects. The most compelling use-case emerged when we leveraged the hardware to upcycle vintage loudspeakers, transforming them into modern, high-quality sound systems. To extend our reach beyond B&O enthusiasts and engage the wider maker community, we partnered with [HifiBerry](https://www.hifiberry.com/) to co-develop and distribute the board—accompanied by guides for upcycling not just B&O speakers, but virtually any passive loudspeaker.',
       challengesTitle: 'Creating a modular platform for vintage speakers',
       challengesImages: [
-        { src: '/projects/beocreate/image2.jpg', caption: 'An exploded view of an upcycled loudspeaker' },
+        { src: '/projects/beocreate/image5.jpg', halfWidth: true,caption: 'Product specifications for the Beocreate 4CA, a raspberry pi powered audio platform' },
+        { src: '/projects/beocreate/image2.jpg', halfWidth: true, caption: 'An exploded view of an upcycled loudspeaker' },
       ],
       outcome: 'Launched in 2018, Beocreate empowered hobbyists worldwide to explore creative audio projects using the platform. The product remains available, with its legacy living on through official Bang & Olufsen Recreated products and the Reloved product lines.',
       outcomeTitle: 'Successful launch and the legacy continues',
       outcomeImages: [
-        { video: '/projects/beocreate/beocreate-video.mp4', caption: 'Product demo', fullWidth: true, fit: 'contain', bgColor: '#000000' },
-        { src: '/projects/beocreate/image3.jpg', caption: 'A collection of upcycled loudspeakers showcased at TechBBQ' },
+        { video: '/projects/beocreate/beocreate-video.mp4', caption: 'Product demo', fit: 'contain', bgColor: '#000000' },
+        { src: '/projects/beocreate/image3.jpg', caption: 'A collection of upcycled loudspeakers showcased at TechBBQ', halfWidth: true },
+        { src: '/projects/beocreate/image4.jpg', caption: 'An upcycled pink Bang & Olufsen CX50 loudspeaker', halfWidth: true },
       ],
     },
   },
@@ -113,19 +116,19 @@ export const projects: Project[] = [
       overview: 'Pippi is a personal development project targeting design-conscious customers who want decorative electronics. The goal was to design Pippi with local manufacturing and circular materials in mind.',
       overviewTitle: 'Electronics for design-conscious parents',
       overviewImages: [
-        { src: '/projects/pippi-baby-monitor/image1.png', bgColor: '#FFFFFF', fit: 0.75, caption: 'Exploration process of form' },
+        { src: '/projects/pippi-baby-monitor/image1.png', bgColor: '#FFFFFF', caption: 'Exploration process of form', halfWidth: true },
       ],
       challenges: 'The goal was to create a design that invoked emotional ties with the customer while maintainging manufacturability. Colors differentiate between baby- and parent unit while saving costs using the same mechanical tooling. Uses ethical materials: durable medically graded silicone from Norway for the top and reclaimed ocean plastic for the bottom.',
       challengesTitle: 'Local manufacturing with ethical materials',
       challengesImages: [
-        { src: '/projects/pippi-baby-monitor/image2.jpg', caption: 'Physical prototypes exploring size and proportions' },
-        { src: '/projects/pippi-baby-monitor/image4.jpg', caption: 'Acoustic models verifying sound- and signal quality' },
+        { src: '/projects/pippi-baby-monitor/image2.jpg', caption: 'Physical prototypes exploring size and proportions', halfWidth: true },
+        { src: '/projects/pippi-baby-monitor/image4.jpg', caption: 'Acoustic models verifying sound- and signal quality', halfWidth: true },
       ],
       outcome: 'The concept was developed at Soundhub DK to ensure excellent sound quality using top-tier audio components. It was imperative that the final product conveyed a sense of premium craftsmanship and high quality.',
       outcomeTitle: 'Premium audio with a distinctive design language',
       outcomeImages: [
-        { src: '/projects/pippi-baby-monitor/image5.jpg', caption: 'The color differentiation between baby- and parent unit', fullWidth: true, },
-        { src: '/projects/pippi-baby-monitor/image3.png', caption: 'Exploded view of the assembly' },
+        { src: '/projects/pippi-baby-monitor/image5.jpg', caption: 'The color differentiation between baby- and parent unit' },
+        { src: '/projects/pippi-baby-monitor/image3.png', caption: 'Exploded view of the assembly', halfWidth: true },
       ],
     },
   },
@@ -145,22 +148,21 @@ export const projects: Project[] = [
       overview: 'Chosen from a student project to collaborate with the IDEO London team on envisioning the future of IKEA kitchens. Together, we explored emerging trends and imagined how they would evolve over the next decade—conducting urban farm visits, home visits, and synthesizing our research into actionable design strategies.',
       overviewTitle: 'Exploring future kitchens for IKEA',
       overviewImages: [
-        { src: '/projects/concept-kitchen-2025/image1.jpg' },
-        { src: '/projects/concept-kitchen-2025/image2.jpg', caption: 'Sketches ideating "doing more with less space"' },
+        { src: '/projects/concept-kitchen-2025/image2.jpg', caption: 'Sketches ideating "doing more with less space"', halfWidth: true },
       ],
       challenges: 'Our objective was to design an engaging exhibition space for IKEA\'s Concept Kitchen 2025 at Expo 2015 in Milan. By employing lo-fi prototyping techniques—often with simple materials like post-its—we explored how the exhibition could be experienced by visitors and envision a future that fosters meaningful connections and sustainable actions through thoughtful interactions.',
       challengesTitle: 'Translating future trends into physical prototypes',
       challengesImages: [
-        { src: '/projects/concept-kitchen-2025/image3.jpg' },
-        { src: '/projects/concept-kitchen-2025/image4.jpg' },
+        { src: '/projects/concept-kitchen-2025/image3.jpg', halfWidth: true },
+        { src: '/projects/concept-kitchen-2025/image4.jpg', halfWidth: true },
       ],
       outcome: "The final result was the Concept Kitchen 2025, showcased as part of IKEA's #IKEATemporary exhibit at Expo 2015 in Milan. The IDEO London team completed the exhibition, featuring a live demonstration of the interactive table, concepts for visualizing waste disposal and recycling, ideas for using the kitchen to foster meaningful connections and sustainable actions through thoughtful interactions, as well as innovative visual storage solutions for food items combining traditional and modern implementations.",
       outcomeTitle: 'Exhibited at Expo 2015 Milan',
       outcomeImages: [
-        { src: '/projects/concept-kitchen-2025/image5.jpg' },
-        { src: '/projects/concept-kitchen-2025/image6.jpg' },
-        { src: '/projects/concept-kitchen-2025/image7.jpg' },
-        { src: '/projects/concept-kitchen-2025/image8.jpg' },
+        { src: '/projects/concept-kitchen-2025/image5.jpg', halfWidth: true },
+        { src: '/projects/concept-kitchen-2025/image6.jpg', halfWidth: true },
+        { src: '/projects/concept-kitchen-2025/image7.jpg', halfWidth: true },
+        { src: '/projects/concept-kitchen-2025/image8.jpg', halfWidth: true },
       ],
     },
   },
@@ -194,9 +196,9 @@ export const projects: Project[] = [
       outcome: 'Delivered 3D models and photorealistic renderings for the Okapi watch face, supporting the brand\'s debut collection launch. The design successfully captured the essence of 1970s watchmaking reinterpreted for modern wrists.',
       outcomeTitle: 'Enabling Pedral\'s debut collection',
       outcomeImages: [
-        { video: '/projects/pedral-watches/Pedral-VideoLoop.mp4', caption: 'Product demo', fullWidth: true, fit: 'contain'},
-        { src: '/projects/pedral-watches/image2.jpg' },
-        { src: '/projects/pedral-watches/image5.jpg' },
+        { video: '/projects/pedral-watches/Pedral-VideoLoop.mp4', caption: 'Product demo', fit: 'contain' },
+        { src: '/projects/pedral-watches/image2.jpg', halfWidth: true },
+        { src: '/projects/pedral-watches/image5.jpg', halfWidth: true },
       ],
     },
   },
@@ -240,13 +242,16 @@ export const projects: Project[] = [
       overview: 'Leading product development for UVISA\'s first-of-its-kind home-treatment device that uses light therapy to treat bacterial vaginosis (BV) and candidiasis. Coordinating cross-functional teams spanning embedded firmware, mobile app development, and mechanical engineering to deliver a drug-free alternative that empowers women to manage intimate health at home.',
       overviewTitle: 'Developing a non-pharmacological treatment for vaginal infections',
       overviewImages: [
-        { src: '/projects/uvisa-medical-device/image1.jpg', caption: 'Models for ergonomic design studies' },
+        { src: '/projects/uvisa-medical-device/image5.jpg', caption: 'Form studies evaluating ergonomics and aesthetics', fit: 'contain', bgColor: '#FFFFFF', halfWidth: true },
+        { src: '/projects/uvisa-medical-device/image6.png', caption: 'Rendering of the chosen concept', fit: 'contain', bgColor: '#FFFFFF', halfWidth: true },
+        { src: '/projects/uvisa-medical-device/image2.jpg', caption: '3D printed prototype validating machanics and electronics', halfWidth: true },
+        { src: '/projects/uvisa-medical-device/image7.jpg', halfWidth: true },
       ],
       challenges: 'Navigating Class IIa medical device regulations (ISO 13485, IEC 60601, ISO 62304) while driving design innovation. The core engineering challenge: optimizing light output for therapeutic effectiveness while managing heat dissipation within intimate body contact limits. Employed computational design generation and parametric evaluation to iterate rapidly on thermal-optical trade-offs, improving product economics through material and geometry optimization.',
       challengesTitle: 'Balancing thermal constraints with therapeutic efficacy',
       challengesImages: [
-        { src: '/projects/uvisa-medical-device/image2.jpg' },
-        { src: '/projects/uvisa-medical-device/image3.jpg' },
+        { src: '/projects/uvisa-medical-device/image8.jpg', caption: 'DFM evaluation with oversea suppliers', halfWidth: true },
+        { src: '/projects/uvisa-medical-device/image9.jpg', caption: 'Validating temperature at dosage radiation', halfWidth: true },
       ],
       outcome: 'Developing the complete product architecture from ergonomic form studies through DFM-ready design. Established documentation frameworks for EU MDR compliance while maintaining design quality. The device is currently undergoing clinical trials in Odense to validate therapeutic efficacy.',
       outcomeTitle: 'From concept to clinical validation',

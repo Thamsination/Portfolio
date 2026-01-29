@@ -81,10 +81,10 @@ export default function ProjectDetail({ project, nextProject, prevProject }: Pro
       <div className={gridClass} style={{ gap: '1rem', marginTop: '5rem' }}>
         {images.map((image, index) => {
           const imageKey = `${sectionKey}-${index}`;
-          // Determine column span: fullWidth = 6 (full row), thirdWidth = 2 (3 per row), default = 3 (2 per row)
-          let spanClass = "md:col-span-3"; // Default: 2 images per row
-          if (image.fullWidth || images.length === 1) {
-            spanClass = "md:col-span-6"; // Full width: 1 image per row
+          // Determine column span: default = 6 (full row), halfWidth = 3 (2 per row), thirdWidth = 2 (3 per row)
+          let spanClass = "md:col-span-6"; // Default: full width (1 image per row)
+          if (image.halfWidth) {
+            spanClass = "md:col-span-3"; // Half width: 2 images per row
           } else if (image.thirdWidth) {
             spanClass = "md:col-span-2"; // Third width: 3 images per row
           }
