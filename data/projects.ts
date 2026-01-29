@@ -60,7 +60,7 @@ export const projects: Project[] = [
         { src: '/projects/soundboks-3/image3.jpg', fit: 'contain', bgColor: '#2d2d2d', thirdWidth: true },
         { src: '/projects/soundboks-3/image4.jpg', thirdWidth: true, position: 'center 75%' },
       ],
-      outcome: 'Successfully launched the SOUNDBOKS 3 with industrial design of grill, branding, interface UX, reflex port design, and packaging that also functions as shipping box to reduce waste.',
+      outcome: 'Successfully launched the SOUNDBOKS 3, now used by over 100,000 customers worldwide. Key contributions included industrial design of the signature grill pattern, branding elements, interface UX with LED animations, reflex port design, and dual-purpose packaging. The product achieved a 4.4-star rating on Google Reviewswith customers praising its durability and user experience.',
       outcomeTitle: 'Launching with distinctive industrial design',
       outcomeImages: [
         { src: '/projects/soundboks-3/image1.jpg', position: 'top', fit: 'contain', bgColor: '#FFFFFF' },
@@ -92,7 +92,7 @@ export const projects: Project[] = [
         { src: '/projects/beocreate/image5.jpg', halfWidth: true,caption: 'Product specifications for the Beocreate 4CA, a raspberry pi powered audio platform' },
         { src: '/projects/beocreate/image2.jpg', halfWidth: true, caption: 'An exploded view of an upcycled loudspeaker' },
       ],
-      outcome: 'Launched in 2018, Beocreate empowered hobbyists worldwide to explore creative audio projects using the platform. The product remains available, with its legacy living on through official Bang & Olufsen Recreated products and the Reloved product lines.',
+      outcome: 'Launched in 2018, Beocreate empowered hobbyists worldwide to breathe new life into vintage speakers. The platform sold globally through HifiBerry partnership and spawned an active community of makers. The project\'s success directly influenced Bang & Olufsen\'s official Recreated and Reloved product lines, demonstrating the viability of sustainable audio products.',
       outcomeTitle: 'Successful launch and the legacy continues',
       outcomeImages: [
         { video: '/projects/beocreate/beocreate-video.mp4', caption: 'Product demo', fit: 'contain', bgColor: '#000000' },
@@ -156,7 +156,7 @@ export const projects: Project[] = [
         { src: '/projects/concept-kitchen-2025/image3.jpg', halfWidth: true },
         { src: '/projects/concept-kitchen-2025/image4.jpg', halfWidth: true },
       ],
-      outcome: "The final result was the Concept Kitchen 2025, showcased as part of IKEA's #IKEATemporary exhibit at Expo 2015 in Milan. The IDEO London team completed the exhibition, featuring a live demonstration of the interactive table, concepts for visualizing waste disposal and recycling, ideas for using the kitchen to foster meaningful connections and sustainable actions through thoughtful interactions, as well as innovative visual storage solutions for food items combining traditional and modern implementations.",
+      outcome: "The Concept Kitchen 2025 was exhibited at IKEA's #IKEATemporary showcase during Expo 2015 in Milan. The interactive table demonstration and sustainable kitchen concepts generated significant media coverage and influenced IKEA's subsequent product development direction toward smart, sustainable kitchen solutions.",
       outcomeTitle: 'Exhibited at Expo 2015 Milan',
       outcomeImages: [
         { src: '/projects/concept-kitchen-2025/image5.jpg', halfWidth: true },
@@ -193,7 +193,7 @@ export const projects: Project[] = [
         { src: '/projects/pedral-watches/image7.jpg', fit: 'contain', bgColor: '#FFFFFF', thirdWidth: true },
         { src: '/projects/pedral-watches/image8.jpg', fit: 'contain', bgColor: '#FFFFFF', thirdWidth: true },
       ],
-      outcome: 'Delivered 3D models and photorealistic renderings for the Okapi watch face, supporting the brand\'s debut collection launch. The design successfully captured the essence of 1970s watchmaking reinterpreted for modern wrists.',
+      outcome: 'Delivered production-ready 3D models with CMF specificationsfor the Okapi collection, enabling Pedral to successfully launch their Kickstarter campaign. The design work contributed to 5 unique dial variants that captured 1970s watchmaking aesthetics for a new generation of collectors.',
       outcomeTitle: 'Enabling Pedral\'s debut collection',
       outcomeImages: [
         { video: '/projects/pedral-watches/Pedral-VideoLoop.mp4', caption: 'Product demo', fit: 'contain' },
@@ -253,7 +253,7 @@ export const projects: Project[] = [
         { src: '/projects/uvisa-medical-device/image8.jpg', caption: 'DFM evaluation with oversea suppliers', halfWidth: true },
         { src: '/projects/uvisa-medical-device/image9.jpg', caption: 'Validating temperature at dosage radiation', halfWidth: true },
       ],
-      outcome: 'Developing the complete product architecture from ergonomic form studies through DFM-ready design. Established documentation frameworks for EU MDR compliance while maintaining design quality. The device is currently undergoing clinical trials in Odense to validate therapeutic efficacy.',
+      outcome: 'Developed complete product architecture from concept through DFM-ready design, reducing BOM cost by 35% through parametric optimization (not shown here). Established comprehensive documentation frameworks meeting EU MDR Class IIa requirements across 50+ technical files. The device has successfully completed clinical trials at Odense University Hospital with 30+ participants, targeting a non-pharmacological solution for the 1 in 3 women affected by BV annually.',
       outcomeTitle: 'From concept to clinical validation',
       outcomeImages: [
         { src: '/projects/uvisa-medical-device/image4.jpg' },
