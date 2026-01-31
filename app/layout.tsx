@@ -133,6 +133,22 @@ export default function RootLayout({
           async
           src="//gc.zgo.at/count.js"
         />
+        {/* Enable GoatCounter click tracking for CV downloads */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                var checkGC = setInterval(function() {
+                  if (window.goatcounter && window.goatcounter.bind_events) {
+                    window.goatcounter.bind_events();
+                    clearInterval(checkGC);
+                  }
+                }, 100);
+                setTimeout(function() { clearInterval(checkGC); }, 5000);
+              })();
+            `,
+          }}
+        />
       </body>
     </html>
   );
