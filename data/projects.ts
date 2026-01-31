@@ -59,12 +59,12 @@ export const projects: Project[] = [
       challengesImages: [
         { src: '/projects/soundboks-3/image3.jpg', fit: 'contain', bgColor: '#2d2d2d', thirdWidth: true },
         { src: '/projects/soundboks-3/image4.jpg', thirdWidth: true, position: 'center 75%' },
+        { src: '/projects/soundboks-3/image4.svg', fit: 'contain', bgColor: '#FFFFFF', thirdWidth: true },
       ],
       outcome: 'Successfully launched the SOUNDBOKS 3, now used by over 100,000 customers worldwide. Key contributions included industrial design of the signature grill pattern, branding elements, interface UX with LED animations, reflex port design, and dual-purpose packaging. The product achieved a 4.4-star rating on Google Reviews with customers praising its durability and user experience.',
       outcomeTitle: 'Launching with distinctive industrial design',
       outcomeImages: [
         { src: '/projects/soundboks-3/image1.jpg', position: 'top', fit: 'contain', bgColor: '#FFFFFF' },
-        { src: '/projects/soundboks-3/image4.svg', fit: 'contain', bgColor: '#FFFFFF', halfWidth: true },
       ],
     },
   },
@@ -113,22 +113,23 @@ export const projects: Project[] = [
       role: 'Designer & Developer',
       timeline: '2022',
       tools: ['OnShape', 'KeyShot', 'Prototyping Tools'],
-      overview: 'Pippi is a personal development project targeting design-conscious customers who want decorative electronics. The goal was to design Pippi with local manufacturing and circular materials in mind.',
+      overview: 'Pippi is a personal development project targeting design-conscious parents who want electronics that complement their home aesthetic. The goal was to create a baby monitor with a distinctive Scandinavian design language that stands apart from typical consumer electronics.',
       overviewTitle: 'Electronics for design-conscious parents',
       overviewImages: [
         { src: '/projects/pippi-baby-monitor/image1.png', bgColor: '#FFFFFF', caption: 'Exploration process of form', halfWidth: true },
       ],
-      challenges: 'The goal was to create a design that invoked emotional ties with the customer while maintainging manufacturability. Colors differentiate between baby- and parent unit while saving costs using the same mechanical tooling. Uses ethical materials: durable medically graded silicone from Norway for the top and reclaimed ocean plastic for the bottom.',
-      challengesTitle: 'Local manufacturing with ethical materials',
+      challenges: 'The goal was to create a design that evokes emotional connection while maintaining a clean, distinctive silhouette. The soft, organic form language creates a friendly presence in any room. Color differentiation between baby and parent units adds personality while enabling cost-efficient manufacturing through shared mechanical tooling.',
+      challengesTitle: 'Creating emotional connection through form',
       challengesImages: [
         { src: '/projects/pippi-baby-monitor/image2.jpg', caption: 'Physical prototypes exploring size and proportions', halfWidth: true },
         { src: '/projects/pippi-baby-monitor/image4.jpg', caption: 'Acoustic models verifying sound- and signal quality', halfWidth: true },
+        { src: '/projects/pippi-baby-monitor/image3.png', caption: 'Exploded view of the assembly' },
       ],
       outcome: 'The concept was developed at Soundhub DK to ensure excellent sound quality using top-tier audio components. It was imperative that the final product conveyed a sense of premium craftsmanship and high quality.',
-      outcomeTitle: 'Premium audio with a distinctive design language',
+      outcomeTitle: 'Premium sound with a distinctive design language',
       outcomeImages: [
         { src: '/projects/pippi-baby-monitor/image5.jpg', caption: 'The color differentiation between baby- and parent unit' },
-        { src: '/projects/pippi-baby-monitor/image3.png', caption: 'Exploded view of the assembly', halfWidth: true },
+        
       ],
     },
   },
