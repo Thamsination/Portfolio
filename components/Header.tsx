@@ -74,6 +74,8 @@ export default function Header() {
             <a
               href="/Christian Thams - CV.pdf"
               download
+              data-goatcounter-click="cv-download"
+              data-goatcounter-title="CV Download"
               className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors"
             >
               <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -150,6 +152,8 @@ export default function Header() {
                 <a
                   href="/Christian Thams - CV.pdf"
                   download
+                  data-goatcounter-click="cv-download"
+                  data-goatcounter-title="CV Download"
                   className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-gray-100 rounded-md hover:bg-gray-200 transition-colors"
                 >
                   <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
