@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { League_Spartan, Libre_Baskerville } from "next/font/google";
+import { Space_Grotesk, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const leagueSpartan = League_Spartan({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-league-spartan",
-  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-space-grotesk",
+  weight: ["400", "500", "600", "700"],
 });
 
-const libreBaskerville = Libre_Baskerville({
+const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
-  variable: "--font-libre-baskerville",
-  weight: ["400", "700"],
+  variable: "--font-ibm-plex-sans",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -121,7 +121,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${leagueSpartan.variable} ${libreBaskerville.variable} font-sans antialiased`}>
+      <body className={`${spaceGrotesk.variable} ${ibmPlexSans.variable} font-sans antialiased`}>
         <Header />
         <main className="min-h-screen">
           {children}

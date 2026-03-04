@@ -7,18 +7,18 @@ html {
 body {
   background: #ffffff;
   color: #171717;
-  font-family: var(--font-libre-baskerville), Georgia, serif;
+  font-family: var(--font-ibm-plex-sans), system-ui, sans-serif;
   font-size: 0.9rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Headings and buttons use League Spartan */
+/* Headings and buttons use Space Grotesk */
 h1, h2, h3, h4, h5, h6,
 button,
 .font-heading,
 .btn {
-  font-family: var(--font-league-spartan), system-ui, sans-serif;
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
 }
 
 /* Custom spacing utilities for generous whitespace */
