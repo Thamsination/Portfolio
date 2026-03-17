@@ -73,7 +73,7 @@ const experience = [
     year: 'Sep 2018 – Sep 2019',
     title: 'Design Specialist',
     company: 'SOUNDBOKS, Copenhagen',
-    description: 'Brought SOUNDBOKS 3 to high-volume consumer production as sole industrial designer — designing all plastic and structural components, producing CMF/DFMA/QC documentation for manufacturing suppliers, and developing the UX strategy bridging the physical interface to the app. The product is now used by over 100,000 customers worldwide.',
+    description: 'Joined SOUNDBOKS 3 mid-development and led the final design and DFM phase to consumer launch — finalising plastic and structural components, producing CMF/DFMA/QC documentation for manufacturing suppliers, and developing the UX strategy bridging the physical interface to the app. The product is now used by over 100,000 customers worldwide.',
   },
   {
     year: 'Jan 2015 – Aug 2018',
