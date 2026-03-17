@@ -204,30 +204,6 @@ export const projects: Project[] = [
     },
   },
   {
-    id: 'wall-lamp',
-    title: 'Wall Lamp',
-    description: 'Personal project combining digital facets with strict geometry, where digital trends meet physical interactions.',
-    categories: ['Industrial design'],
-    thumbnail: '/projects/wall-lamp/thumbnail.jpg',
-    featured: false,
-    year: 2014,
-    details: {
-      role: 'Designer together with Martina Zbinden',
-      timeline: '2014',
-      tools: ['Rhinoceros 3D', 'Grasshopper', 'Arduino'],
-      overview: 'A reimagining of what a grandfather clock could be in the 21st century. Exploring expressions of a digital form and minimalstic geometry to create a unique luminaire.',
-      overviewTitle: 'Inspired by classic design to create modern expressions',
-      overviewImages: [
-        { src: '/projects/wall-lamp/image1.jpg', position: 'center 28%' },
-      ],
-      outcome: 'Using digital fabrication we can guide the light where we want reflections, combined with machined aluminium to mount and cool the LEDs. This allowed us to create a unique luminaire that is both functional and aesthetic.',
-      outcomeTitle: 'Utilising materials and exploring manufacturing technologies',
-      outcomeImages: [
-        { src: '/projects/wall-lamp/image2.jpg', position: 'center' },
-      ],
-    },
-  },
-  {
     id: 'uvisa-medical-device',
     title: 'UVISA Fii',
     description: 'Treating vaginal infections using light instead of antibiotics.',
@@ -237,7 +213,7 @@ export const projects: Project[] = [
     year: 2024,
     details: {
       role: 'Chief Product Officer',
-      timeline: '2024 – Present',
+      timeline: '2024 – 2026',
       company: 'UVISA Health',
       tools: ['SolidWorks', 'FreeCAD', 'Gimp', 'Inkscape', 'Blender',],
       overview: 'Leading product development for UVISA\'s first-of-its-kind home-treatment device that uses light therapy to treat bacterial vaginosis (BV) and candidiasis. Coordinating cross-functional teams spanning embedded firmware, mobile app development, and mechanical engineering to deliver a drug-free alternative that empowers women to manage intimate health at home.',
@@ -246,7 +222,7 @@ export const projects: Project[] = [
         { src: '/projects/uvisa-medical-device/image5.jpg', caption: 'Form studies evaluating ergonomics and aesthetics', fit: 'contain', bgColor: '#FFFFFF', halfWidth: true },
         { src: '/projects/uvisa-medical-device/image6.png', caption: 'Rendering of the chosen concept', fit: 'contain', bgColor: '#FFFFFF', halfWidth: true },
         { src: '/projects/uvisa-medical-device/image2.jpg', caption: '3D printed prototype validating machanics and electronics', halfWidth: true },
-        { src: '/projects/uvisa-medical-device/image7.jpg', halfWidth: true },
+        { src: '/projects/uvisa-medical-device/image7.jpg', caption: 'Electromechanical assembly prototype', halfWidth: true },
       ],
       challenges: 'Navigating Class IIa medical device regulations (ISO 13485, IEC 60601, ISO 62304) while driving design innovation. The core engineering challenge: optimizing light output for therapeutic effectiveness while managing heat dissipation within intimate body contact limits. Employed computational design generation and parametric evaluation to iterate rapidly on thermal-optical trade-offs, improving product economics through material and geometry optimization.',
       challengesTitle: 'Balancing thermal constraints with therapeutic efficacy',

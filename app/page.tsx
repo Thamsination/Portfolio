@@ -7,11 +7,10 @@ import ProjectCard from '@/components/ProjectCard';
 import { getFeaturedProjects } from '@/data/projects';
 
 const companies = [
-  { name: 'Bang & Olufsen', url: 'https://www.bang-olufsen.com/', logo: '/logos/bang-olufsen.svg' },
-  { name: 'SOUNDBOKS', url: 'https://www.soundboks.com/', logo: '/logos/soundboks.svg' },
-  { name: 'IDEO', url: 'https://www.ideo.com/', logo: '/logos/ideo.svg' },
-  { name: 'Danish Design Center', url: 'https://danskdesigncenter.dk/', logo: '/logos/ddc.png' },
-  { name: 'UVISA Health', url: 'https://www.uvisahealth.com/', logo: '/logos/uvisa.svg' },
+  { name: 'Bang & Olufsen', url: 'https://www.bang-olufsen.com/', logo: '/logos/bang-olufsen.svg', note: '' },
+  { name: 'SOUNDBOKS', url: 'https://www.soundboks.com/', logo: '/logos/soundboks.svg', note: '' },
+  { name: 'Danish Design Center', url: 'https://danskdesigncenter.dk/', logo: '/logos/ddc.png', note: '' },
+  { name: 'UVISA Health', url: 'https://www.uvisahealth.com/', logo: '/logos/uvisa.svg', note: '' },
 ];
 
 // Testimonials - Uncomment when ready with real quotes from colleagues/clients
@@ -72,18 +71,21 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white" style={{ marginBottom: '1.5rem' }}>
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white" style={{ marginBottom: '1rem' }}>
               Making things people <span style={{ color: 'rgba(249, 101, 219, 0.8)' }}>love</span>
             </h1>
+            <p className="text-sm sm:text-base font-medium tracking-wide uppercase text-gray-400 max-w-2xl mx-auto" style={{ marginBottom: '1.5rem' }}>
+              Senior Product Designer · Consumer Electronics &amp; Medical Devices
+            </p>
             <p className="text-base text-gray-300 max-w-2xl mx-auto" style={{ marginBottom: '4rem' }}>
               <span className="sm:hidden">
-                Industrial designer with 10 years of experience at B&amp;O, SOUNDBOKS &amp; UVISA Health. Turning ideas into products through sketching, CAD, and prototyping.
+                Senior Product Designer with 10 years at B&amp;O, SOUNDBOKS &amp; UVISA Health. Products I&apos;ve shaped have shipped to 100,000+ customers and passed clinical study.
               </span>
               <span className="hidden sm:inline">
                 <>
-                  Hello! I'm Christian, an industrial designer based in Copenhagen with 10 years of experience turning ideas into real products. I take a customer-focused approach—using sketching, CAD, prototyping, and a bit of code—to make things people love.
+                  Based in Copenhagen with 10 years at Bang &amp; Olufsen, SOUNDBOKS, and UVISA Health — I work the full span from parametric CAD and hands-on prototyping to DFM, regulatory compliance, and cross-functional project ownership. Products I&apos;ve shaped have shipped to over 100,000 customers and passed clinical study at a university hospital.
                   <br /><br />
-                  Take a look at some of my projects, and if you have any questions, feel free to send me an email. Always happy to chat!
+                  Take a look at some of my projects, and get in touch if you&apos;d like to collaborate.
                 </>
               </span>
             </p>
@@ -194,7 +196,7 @@ export default function Home() {
                 href={company.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center justify-center opacity-70 hover:opacity-100 transition-all hover:scale-105"
+                className="group flex flex-col items-center justify-center opacity-70 hover:opacity-100 transition-all hover:scale-105"
                 title={company.name}
               >
                 <Image
@@ -205,6 +207,9 @@ export default function Home() {
                   className="object-contain"
                   style={{ filter: 'grayscale(100%)', height: '24px', maxWidth: '160px', width: 'auto' }}
                 />
+                {company.note && (
+                  <span className="text-xs text-gray-400 mt-1">{company.note}</span>
+                )}
               </a>
             ))}
           </motion.div>
