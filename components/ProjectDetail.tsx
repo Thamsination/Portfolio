@@ -1,11 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Project } from '@/data/projects';
+import ImageLightbox, { LightboxImage } from './ImageLightbox';
 
 interface ProjectDetailProps {
   project: Project;
@@ -60,27 +61,60 @@ const companyLogos: Record<string, { logo: string; url: string }> = {
 
 export default function ProjectDetail({ project, nextProject, prevProject }: ProjectDetailProps) {
   const router = useRouter();
-  const [visibleCaption, setVisibleCaption] = useState<string | null>(null);
-  
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
   // Get logo info for the project's company
   const companyInfo = project.details.company ? companyLogos[project.details.company] : null;
 
-  const handleImageClick = (key: string) => {
-    // Toggle caption visibility on tap (for mobile)
-    setVisibleCaption(visibleCaption === key ? null : key);
+  // Build a single combined list of all enlargeable images across all sections,
+  // plus a lookup so each gallery image knows its position in that combined list.
+  const { allLightboxImages, indexLookup } = useMemo(() => {
+    const combined: LightboxImage[] = [];
+    const lookup = new Map<string, number>();
+
+    const sections: Array<[string, typeof project.details.overviewImages]> = [
+      ['overview', project.details.overviewImages],
+      ['challenges', project.details.challengesImages],
+      ['outcome', project.details.outcomeImages],
+    ];
+
+    sections.forEach(([sectionKey, images]) => {
+      if (!images) return;
+      images.forEach((img, i) => {
+        if (img.src && !img.video) {
+          lookup.set(`${sectionKey}-${i}`, combined.length);
+          combined.push({
+            src: img.src,
+            caption: img.caption,
+            bgColor: img.bgColor,
+          });
+        }
+      });
+    });
+
+    return { allLightboxImages: combined, indexLookup: lookup };
+  }, [
+    project.details.overviewImages,
+    project.details.challengesImages,
+    project.details.outcomeImages,
+  ]);
+
+  const openLightbox = (sectionKey: string, indexInSection: number) => {
+    const combinedIndex = indexLookup.get(`${sectionKey}-${indexInSection}`);
+    if (combinedIndex === undefined) return;
+    setLightboxIndex(combinedIndex);
   };
 
   // Reusable image gallery renderer
   const renderImageGallery = (images: typeof project.details.overviewImages, sectionKey: string) => {
     if (!images || images.length === 0) return null;
-    
+
     // Use 6-column grid to support both 2-column (default) and 3-column layouts
     const gridClass = "grid grid-cols-1 md:grid-cols-6";
-    
+
     return (
       <div className={gridClass} style={{ gap: '1rem', marginTop: '5rem' }}>
         {images.map((image, index) => {
-          const imageKey = `${sectionKey}-${index}`;
           // Determine column span: default = 6 (full row), halfWidth = 3 (2 per row), thirdWidth = 2 (3 per row)
           let spanClass = "md:col-span-6"; // Default: full width (1 image per row)
           if (image.halfWidth) {
@@ -88,12 +122,30 @@ export default function ProjectDetail({ project, nextProject, prevProject }: Pro
           } else if (image.thirdWidth) {
             spanClass = "md:col-span-2"; // Third width: 3 images per row
           }
+
+          const isEnlargeable = !!image.src && !image.video;
+
           return (
-            <div 
-              key={index} 
-              className={`group relative aspect-[4/3] rounded-lg overflow-hidden cursor-pointer ${spanClass}`}
+            <div
+              key={index}
+              className={`group relative aspect-[4/3] rounded-lg overflow-hidden ${
+                isEnlargeable ? 'cursor-zoom-in' : ''
+              } ${spanClass}`}
               style={{ backgroundColor: image.bgColor || '#e5e7eb' }}
-              onClick={() => handleImageClick(imageKey)}
+              onClick={isEnlargeable ? () => openLightbox(sectionKey, index) : undefined}
+              role={isEnlargeable ? 'button' : undefined}
+              tabIndex={isEnlargeable ? 0 : undefined}
+              aria-label={isEnlargeable ? image.caption || `Enlarge image ${index + 1}` : undefined}
+              onKeyDown={
+                isEnlargeable
+                  ? (e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openLightbox(sectionKey, index);
+                      }
+                    }
+                  : undefined
+              }
             >
               {image.video ? (
                 /* Video element */
@@ -101,7 +153,7 @@ export default function ProjectDetail({ project, nextProject, prevProject }: Pro
                   src={image.video}
                   controls
                   className="w-full h-full object-cover"
-                  style={{ 
+                  style={{
                     objectFit: typeof image.fit === 'number' || image.fit === 'contain' ? 'contain' : 'cover',
                     objectPosition: image.position || 'center',
                   }}
@@ -113,7 +165,7 @@ export default function ProjectDetail({ project, nextProject, prevProject }: Pro
                   alt={image.caption || `${project.title} - Image ${index + 1}`}
                   fill
                   className="group-hover:scale-105 transition-transform duration-300"
-                  style={{ 
+                  style={{
                     objectFit: typeof image.fit === 'number' || image.fit === 'contain' ? 'contain' : 'cover',
                     objectPosition: image.position || 'center',
                     transform: typeof image.fit === 'number' ? `scale(${image.fit})` : undefined,
@@ -121,15 +173,9 @@ export default function ProjectDetail({ project, nextProject, prevProject }: Pro
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               ) : null}
-              {/* Caption overlay - shows on hover (desktop) or tap (mobile) */}
+              {/* Caption overlay - shows on hover (desktop) */}
               {image.caption && !image.video && (
-                <div 
-                  className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent text-white p-4 pt-24 transition-opacity duration-300 ${
-                    visibleCaption === imageKey 
-                      ? 'opacity-100' 
-                      : 'opacity-0 group-hover:opacity-100'
-                  }`}
-                >
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent text-white p-4 pt-24 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                   <p className="text-sm">{image.caption}</p>
                 </div>
               )}
@@ -279,6 +325,14 @@ export default function ProjectDetail({ project, nextProject, prevProject }: Pro
           </div>
         </div>
       </div>
+
+      {/* Image lightbox - navigates across all images in the project */}
+      <ImageLightbox
+        images={allLightboxImages}
+        index={lightboxIndex}
+        onClose={() => setLightboxIndex(null)}
+        onIndexChange={(i) => setLightboxIndex(i)}
+      />
 
       {/* Navigation to Next/Previous Projects */}
       <div className="border-t border-gray-200 bg-gray-50">
